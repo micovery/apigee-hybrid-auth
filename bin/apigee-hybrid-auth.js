@@ -57,7 +57,7 @@ var argv = yargs
         default: 'curl'
     })
     .version("1.0")
-    .usage('Usage:\n  apigee-hybrid-auth.js -u username@google.com -p SuperSecret -o /file/path.txt')
+    .usage('Usage:\n  apigee-hybrid-auth.js -u username@google.com -p SuperSecret')
     .argv;
 
 

@@ -23,7 +23,7 @@ Note that this tool works with [Apigee Hybrid](https://docs.apigee.com/hybrid/).
 * Login to the Apigee UI using your GCP credentials,
   
   ```shell script
-  apigee-hybrid-auth.js --username=yourusername@google.com --password=SuperSecret123
+  apigee-hybrid-auth.js -u yourusername@google.com -p SuperSecret123
   ```
 
   (this outputs a file called `auth.txt` which contains the Apigee security headers)
@@ -124,7 +124,7 @@ curl -X POST https://apigee.google.com/organizations/YOUR_GCP_ORG/sites/SIDE_ID/
 ```
 ### Add OpenAPI Spec snapshot to API Product in Developer Portal
 
-```
+```shell script
 curl -X POST 'https://apigee.google.com/organizations/YOUR_GCP_ORG/sites/SITE_ID/apidocs/DOC_ID/snapshot' \
   -H 'content-type: text/plain' \
   -H 'Accept:application/json' \
