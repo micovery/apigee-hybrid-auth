@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Tool to automate authentication to the Apigee Hybrid UI.",
   "bin": {
-    "apigee-hybrid-auth": "apigee-hybrid-auth.js"
+    "apigee-hybrid-auth": "bin/apigee-hybrid-auth.js"
   },
   "dependencies": {
     "cli-spinners": "^2.3.0",
