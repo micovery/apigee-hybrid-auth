@@ -131,3 +131,7 @@ curl -X POST 'https://apigee.google.com/organizations/YOUR_GCP_ORG/sites/SITE_ID
   -H '@auth.txt' \
   --data-binary '@./petstore.yml'
 ```
+
+## Not Google Product Clause
+
+This is not an officially supported Google product.
