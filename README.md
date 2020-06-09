@@ -6,10 +6,9 @@ APIs that the Apigee UI uses.
 
 This is sometimes useful for automation purposes if you want to call Apigee APIs for features that are still in alpha, or beta stage.
 
-For all other APIs, see the [Apigee docs](https://docs.apigee.com/reference/apis).
+For all other Apigee APIs, see the [Apigee docs](https://docs.apigee.com/reference/apis).
 
 Note that this tool works with [Apigee Hybrid](https://docs.apigee.com/hybrid/). It does not work with Apigee Edge.
-
 
 ## Prerequisites
  * Node.js (tested with v12.18.0)
@@ -17,7 +16,7 @@ Note that this tool works with [Apigee Hybrid](https://docs.apigee.com/hybrid/).
 ## How to use the tool
 * Install the tool from this repo
   ```shell script
-  npm install -g https://github.com/micovery/apigee-ui-auth.git
+  npm install -g https://github.com/micovery/apigee-hybrid-auth.git
   ```
 
 * Login to the Apigee UI using your GCP credentials,
