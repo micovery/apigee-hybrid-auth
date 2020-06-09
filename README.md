@@ -1,7 +1,7 @@
 ## Apigee Hybrid UI Authentication
 
 This tool allows you to authenticate to the Apigee UI, and save the security HTTP headers
-to disk. What's the point of this you ask ...? By doing this, you can use cURL to call the same
+to disk. What's the point of this you ask? By doing this, you can use cURL to call the same
 APIs that the Apigee UI uses. 
 
 This is sometimes useful for automation purposes if you want to call Apigee APIs for features that are still in alpha, or beta stage.
@@ -23,7 +23,7 @@ Note that this tool works with [Apigee Hybrid](https://docs.apigee.com/hybrid/).
 * Login to the Apigee UI using your GCP credentials,
   
   ```shell script
-  apigee-hybrid-auth.js --username=yourusername@google.com --password='SuperSecrer123!'
+  apigee-hybrid-auth.js --username=yourusername@google.com --password=SuperSecret123
   ```
 
   (this outputs a file called `auth.txt` which contains the Apigee security headers)
@@ -61,17 +61,73 @@ cookie: ...all cookies from the apigee.google.com site ...
  
 
 ## API Call Samples
+
+### Create API Product
+```shell script
+curl -X POST 'https://apigee.google.com/organizations/YOUR_GCP_ORG/apiproducts' \
+  -H 'Content-Type: application/json' \
+  -H 'Accept:application/json' \
+  -H '@auth.txt' \
+  -d '
+{
+  "name":"Product2",
+  "displayName":"Product2",
+  "description":"",
+  "environments":["test"],
+  "apiResources":[],
+  "attributes":[{"name":"access","value":"internal"}],
+  "approvalType":"auto",
+  "proxies":[],
+  "scopes":[]
+}'
+```
+
+### List developer portals
+
+```shell script
+curl -X GET  https://apigee.google.com/organizations/YOUR_GCP_ORG/sites \
+  -H 'Accept:application/json' \
+  -H '@auth.txt'
+```
 ### Create a developer portal
 
 ```shell script
-curl -X POST  https://apigee.google.com/organizations/YOUR_GC_ORG_NAME/sites \
+curl -X POST  https://apigee.google.com/organizations/YOUR_GCP_ORG/sites \
   -H 'Content-Type: application/json' \
   -H 'Accept:application/json' \
   -H '@auth.txt' \
   -d '
 {
    "name":"test-portal",
-   "orgName": "YOUR_GC_ORG_NAME", 
+   "orgName": "YOUR_GCP_ORG", 
    "portalVersion":2
 }'
+```
+
+### Add API Product to Developer Portal
+
+```shell script
+curl -X POST https://apigee.google.com/organizations/YOUR_GCP_ORG/sites/SIDE_ID/apidocs \
+  -H 'Content-Type: application/json' \
+  -H 'Accept:application/json' \
+  -H '@auth.txt' \
+  -d '
+{
+  "title":"API Product2",
+  "description":"",
+  "edgeAPIProductName":"Product2",
+  "visibility":true,
+  "anonAllowed":true,
+  "requireCallbackUrl":false,
+  "specId":"petstore"
+}'
+```
+### Add OpenAPI Spec snapshot to API Product in Developer Portal
+
+```
+curl -X POST 'https://apigee.google.com/organizations/YOUR_GCP_ORG/sites/SITE_ID/apidocs/DOC_ID/snapshot' \
+  -H 'content-type: text/plain' \
+  -H 'Accept:application/json' \
+  -H '@auth.txt' \
+  --data-binary '@./petstore.yml'
 ```
