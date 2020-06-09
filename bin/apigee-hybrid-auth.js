@@ -29,12 +29,14 @@ var argv = yargs
     .option('username', {
         alias: 'u',
         describe: 'Google account username',
-        required: true
+        required: true,
+        type: "string"
     })
     .option('password', {
         alias: 'p',
         describe: 'Google account password',
-        required: true
+        required: true,
+        type: "string"
     })
     .option('browser', {
         alias: 'b',
